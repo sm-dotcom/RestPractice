@@ -37,12 +37,12 @@ response_json = json.loads(response.text)
 id = jsonpath.jsonpath(response_json, 'id')
 print(id[0])
 
-<<<<<<< HEAD
+# <<<<<<< HEAD
 
-=======
+# =======
 update_li = jsonpath.jsonpath(response_json, 'createdAt')
 print(update_li[0])
->>>>>>> [Sarah]Restapi Put and post request. Main token generated.
+# >>>>>>> [Sarah]Restapi Put and post request. Main token generated.
 
 
 

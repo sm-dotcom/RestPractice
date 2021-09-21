@@ -16,8 +16,8 @@ from selenium.webdriver.support.ui import Select
 # browser = webdriver.Chrome('C:\\Users\\Saad\\Downloads\\chromedriver_win32\\chromedriver')
 browser = webdriver.Chrome("C:\\Users\\sarah.mahmood\\Downloads\\chromedriver_win32\\chromedriver.exe") #Webdriver browser
 browser.get('http://172.20.22.81/OmniPCXRECORD/TenantAdmin.aspx') #Add a Website
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+# =======
 
 email = browser.find_element_by_name('ctrl_TenantAdmin1$txtUserName') #enter email_id
 email.send_keys('admin')
@@ -47,4 +47,4 @@ browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/ta
 
 
 browser.quit()
->>>>>>> [Sarah]Restapi Put and post request. Main token generated.
+# >>>>>>> [Sarah]Restapi Put and post request. Main token generated.
