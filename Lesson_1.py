@@ -19,7 +19,7 @@ print(" ")
 
 #Print reponse headers
 resp= response.json()
-showcode = str(resp['Response '])
+showcode = str(resp['Response'])
 print("This is showcode",showcode)
 print(" ")
 
