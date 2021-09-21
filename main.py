@@ -47,18 +47,34 @@ token_name = "rest_api"
 # browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/button').click()
 
 # Get token --> copy
-table = browser.find_element_by_id('gvAPIToken')
-body = table.find_element_by_tag_name('tbody')
-rows = table.find_elements_by_tag_name('tr')
-cells = table.find_elements_by_tag_name('td')
+browser.find_element_by_xpath('//*[@id="gvAPIToken"]/tbody/tr[3]/td[5]/div/img').click()
 
-print(len(rows))
-print(len(cells))
+browser.switch_to.active_element
+elem = browser.find_element_by_id('txtViewToken').get_attribute('value')
+# elem.send_keys('ctrl+a')
+# auth = elem.send_keys('ctrl+c')
+print(elem)
+# table = browser.find_element_by_id('gvAPIToken')
+# body = table.find_element_by_tag_name('tbody')
+# rows = table.find_elements_by_tag_name('tr')
+# cells = table.find_elements_by_tag_name('td')
+#
+# print(len(rows))
+# print(len(cells))
+#
+# for i in range(len(rows)):
+#         columns = rows[i].find_elements_by_tag_name("td")
+#         for j in range(len(columns)):
+#             if columns[j].text == token_name:
+#                 columns[14].click()
+#                 print(columns[j].text)
+time.sleep(5)
 
-for i in range(len(rows)):
-    columns = rows.find_elements_by_xpath('//*[@id="gvAPIToken"]/tbody/tr['+str((i+1))+']')
-    if columns.text == token_name:
-        browser.find_element_by_xpath('//*[@id="gvAPIToken"]/tbody/tr['+(i+1)+']/td[5]/div/img').click()
+
+# for i in range(len(rows)):
+#     columns = rows.find_elements_by_xpath('//*[@id="gvAPIToken"]/tbody/tr['+str((i+1))+']')
+#     if columns.text == token_name:
+#         browser.find_element_by_xpath('//*[@id="gvAPIToken"]/tbody/tr['+(i+1)+']/td[5]/div/img').click()
 #     for j in range(len(columns)):
 #         if columns[j] == token_name:
 #             columns[5].click()
@@ -116,6 +132,6 @@ browser.quit()
 # response = requests.get(url, headers=Parameters)
 # print(response.content)
 # resp = response.json()
-# AuthToken = str(resp['AuthToken'])
+# Authkey = str(resp['AuthToken'])
 #
-# print ('Auth Token from Json Response for Server: ' +AuthToken)
+# print ('Auth Token from Json Response for Server: ' +Authkey)
