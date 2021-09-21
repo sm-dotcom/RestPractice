@@ -35,25 +35,43 @@ browser.find_element_by_id('ctl00_ctrl_LeftMenuCloud1_hlnkAPIToken').click()
 
 token_name = "rest_api"
 
-# # Enter name
-# browser.find_element_by_id('tbName').send_keys(token_name)
-#
-# # Integrator token
-# select_token = Select(browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[3]/td[2]/select'))
-# # select by visible text
-# select_token.select_by_visible_text('Integrator')
-#
-# #Generate Token
-# browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/button').click()
 
 # Get token --> copy
-browser.find_element_by_xpath('//*[@id="gvAPIToken"]/tbody/tr[3]/td[5]/div/img').click()
+# browser.find_element_by_xpath('//*[@id="gvAPIToken"]/tbody/tr[3]/td[5]/div/img').click()
+
 
 browser.switch_to.active_element
 elem = browser.find_element_by_id('txtViewToken').get_attribute('value')
 # elem.send_keys('ctrl+a')
 # auth = elem.send_keys('ctrl+c')
 print(elem)
+
+
+
+browser.quit()
+
+
+# Authtoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo'
+
+# Server AuthToken
+# Parameters = {
+#     "AuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo",
+#     "AuthUser": "admin",
+#     "AuthPassword": "1234567a",
+#     "AuthenticationType": "0"
+# }
+#
+# url = "http://172.20.22.81/opcxrrestapi/Authentication/GetSessionAuthToken"
+#
+#
+# response = requests.get(url, headers=Parameters)
+# print(response.content)
+# resp = response.json()
+# Authkey = str(resp['AuthToken'])
+#
+# print ('Auth Token from Json Response for Server: ' +Authkey)
+
+# ###############################################################################3
 # table = browser.find_element_by_id('gvAPIToken')
 # body = table.find_element_by_tag_name('tbody')
 # rows = table.find_elements_by_tag_name('tr')
@@ -68,7 +86,19 @@ print(elem)
 #             if columns[j].text == token_name:
 #                 columns[14].click()
 #                 print(columns[j].text)
-time.sleep(5)
+
+# # Enter name
+# browser.find_element_by_id('tbName').send_keys(token_name)
+#
+# # Integrator token
+# select_token = Select(browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[3]/td[2]/select'))
+# # select by visible text
+# select_token.select_by_visible_text('Integrator')
+#
+# #Generate Token
+# browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/button').click()
+
+# time.sleep(5)
 
 
 # for i in range(len(rows)):
@@ -78,11 +108,7 @@ time.sleep(5)
 #     for j in range(len(columns)):
 #         if columns[j] == token_name:
 #             columns[5].click()
-
 #time.sleep(3)
-
-
-
 
 
 # rowNo = ""
@@ -112,26 +138,3 @@ time.sleep(5)
 
 # //*[@id="gvAPIToken"]/tbody/tr[1]/td[5]/div/img
 # //*[@id="gvAPIToken"]/tbody/tr[3]/td[5]/div/img
-
-browser.quit()
-# >>>>>>> [Sarah]Restapi Put and post request. Main token generated.
-
-# Authtoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo'
-
-# Server AuthToken
-# Parameters = {
-#     "AuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo",
-#     "AuthUser": "admin",
-#     "AuthPassword": "1234567a",
-#     "AuthenticationType": "0"
-# }
-#
-# url = "http://172.20.22.81/opcxrrestapi/Authentication/GetSessionAuthToken"
-#
-#
-# response = requests.get(url, headers=Parameters)
-# print(response.content)
-# resp = response.json()
-# Authkey = str(resp['AuthToken'])
-#
-# print ('Auth Token from Json Response for Server: ' +Authkey)
