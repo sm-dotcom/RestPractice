@@ -1,23 +1,10 @@
-import time
+import time,requests
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
-import jsonpath
-import requests
-import json
-
 
 browser = webdriver.Chrome("C:\\Users\\sarah.mahmood\\Downloads\\chromedriver_win32\\chromedriver.exe") #Webdriver browser
 browser.get('http://172.20.22.81/OmniPCXRECORD/TenantAdmin.aspx') #Add a Website
-# <<<<<<< HEAD
-# =======
 
 email = browser.find_element_by_name('ctrl_TenantAdmin1$txtUserName') #enter email_id
 email.send_keys('admin')
@@ -33,43 +20,62 @@ browser.set_page_load_timeout(30)
 # Click on API token
 browser.find_element_by_id('ctl00_ctrl_LeftMenuCloud1_hlnkAPIToken').click()
 
-token_name = "rest_api"
+token_name = "token"
 
+# # Enter name
+# browser.find_element_by_id('tbName').send_keys(token_name)
+#
+# # Integrator token
+# select_token = Select(browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[3]/td[2]/select'))
+# # select by visible text
+# select_token.select_by_visible_text('Integrator')
+#
+# #Generate Token
+# browser.find_element_by_xpath('//*[@id="divSipTrunk"]/table/tbody/tr[1]/td[2]/table/tbody/tr[4]/td[2]/button').click()
+#
+# time.sleep(3)
 
 # Get token --> copy
-# browser.find_element_by_xpath('//*[@id="gvAPIToken"]/tbody/tr[3]/td[5]/div/img').click()
+table = browser.find_element_by_id('gvAPIToken')
+rows = len(table.find_elements(By.TAG_NAME, "tr"))
+x=1
+while x < rows:
+    col = browser.find_element_by_xpath("//*[@id='gvAPIToken']/tbody/tr["+str(x)+"]/td[1]")
+    if col.text.__contains__(token_name) :
+        browser.find_element_by_xpath("//*[@id='gvAPIToken']/tbody/tr["+str(x)+"]/td[5]/div/img").click()
+        print("Element Found to copy")
+        break
+    x+=1
 
+time.sleep(3)
 
 browser.switch_to.active_element
-elem = browser.find_element_by_id('txtViewToken').get_attribute('value')
+Authtoken = browser.find_element_by_id('txtViewToken').get_attribute('value')
 # elem.send_keys('ctrl+a')
 # auth = elem.send_keys('ctrl+c')
-print(elem)
-
-
 
 browser.quit()
-
 
 # Authtoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo'
 
 # Server AuthToken
-# Parameters = {
-#     "AuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo",
-#     "AuthUser": "admin",
-#     "AuthPassword": "1234567a",
-#     "AuthenticationType": "0"
-# }
-#
-# url = "http://172.20.22.81/opcxrrestapi/Authentication/GetSessionAuthToken"
-#
-#
-# response = requests.get(url, headers=Parameters)
-# print(response.content)
-# resp = response.json()
-# Authkey = str(resp['AuthToken'])
-#
-# print ('Auth Token from Json Response for Server: ' +Authkey)
+Parameters = {
+    "AuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBbWlnb1NvZnR3YXJlIiwic3ViIjoiT1BDWFJBUEkiLCJlbWFpbCI6ImFzc2lzdGFuY2VAYW1pZ28tc29mdHdhcmUuY29tIiwicm9sZSI6IkludGVncmF0b3IiLCJNUFQiOiJGYWxzZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvaXNwZXJzaXN0ZW50IjoiVHJ1ZSIsImlhdCI6MTYzMjIxODI1MCwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiUHJvZHVjdGlvbiIsImV4cCI6MTk3NzgxODI1MCwiYXVkIjoiT1BDWFJBUEkiLCJMSUkiOiJUcnVlIiwiTElET1MiOiIwMDI1Mi03MDAwMC0wMDAwMC1BQTUzNSIsImV4cGlyZXNfYXQiOiIxOTc3ODE4MjUwIiwibmJmIjoxNjMyMjE4MjUwfQ.RaYGVNleM9bfnMJ-l6kjH6Y6VmlZkc-RGgHae1W7OUo",
+    "AuthUser": "admin",
+    "AuthPassword": "1234567a",
+    "AuthenticationType": "0"
+}
+
+url = "http://172.20.22.81/opcxrrestapi/Authentication/GetSessionAuthToken"
+
+
+response = requests.get(url, headers=Parameters)
+print(response.content)
+resp = response.json()
+Authkey = str(resp['AuthToken'])
+
+print ('Auth Token from Json Response for Server: ' +Authkey)
+
 
 # ###############################################################################3
 # table = browser.find_element_by_id('gvAPIToken')
