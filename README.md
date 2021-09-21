@@ -1,3 +1,0 @@
-# RestPractice
-
-# Practice restapi python
