@@ -20,12 +20,12 @@ Parameters = {
 }
 
 
-url = baseurl + "/api/users"
-response = requests.post(url, headers=Parameters)
+url = baseurl + "/api/users/681"
+response = requests.put(url, headers=Parameters)
 print(response.content)
 
 #check response
-assert response.status_code == 201
+assert response.status_code == 200
 
 #Fetch headers
 print(response.headers.get('Content-Length'))
@@ -37,12 +37,8 @@ response_json = json.loads(response.text)
 id = jsonpath.jsonpath(response_json, 'id')
 print(id[0])
 
-<<<<<<< HEAD
-
-=======
-update_li = jsonpath.jsonpath(response_json, 'createdAt')
+update_li = jsonpath.jsonpath(response_json, 'updatedAt')
 print(update_li[0])
->>>>>>> [Sarah]Restapi Put and post request. Main token generated.
 
 
 
